@@ -13,4 +13,7 @@ Conditions:
 Invalid account numbers will trigger an 'invalid' message when submitted.
 Ineligible account numbers will not display any rewards, console is logged 'customer_ineligible'
 
+To see this project online go to https://wonderful-mirzakhani-c60791.netlify.app
+
+
 
