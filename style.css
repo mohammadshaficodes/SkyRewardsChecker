@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+    background-color: steelblue;
+    color: #ffffff;
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.channel {
+    background-color: rgba(161, 238, 18, 0.4);
+    padding: 20px 40px;
+    border-radius: 5px;
+}
+
+#getselect {
+    border-radius: 10px;
+    outline: none;
+    padding: 10px;
+}
+
+#resubmit {
+    border-radius: 10px;
+    outline: none;
+    padding: 10px;
+}
+
+#getselect #resubmit {
+    transition-duration: 0.4s;
+    
+  }
+  
+#getselect:hover,
+#resubmit:hover
+{
+    background-color: #4CAF50; 
+    color: white;
+    border-radius: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  width: 150px;
+  border-radius: 10px;
+}
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sky Test</title>
+<style>
+    #error {
+        display:none;
+    }
+    #resubmit {
+        display: none;
+    }
+    #norewards {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<h1>Sky Reward Service</h1>
+
+
+<label for="account"><strong>Account Number</strong> </label><br>
+<input type="number" placeholder="" id="account" maxlength="6" min="6" max="6" required>
+<br>
+<br>
+<strong id ="error" style="color: red;" id="accounterror">Invalid Account Number</strong>
+<br>
+<br>
+<label for="vehicle1"><strong>Channel Subscriptions</strong></label><br>
+
+<div class="checkboxbuttons">
+    <input type="checkbox" class="channel" id="sports" name="sports">
+    <label for="sports"> Sports</label><br>
+    <input type="checkbox" class="channel" id="kids" name="kids">
+    <label for="kids"> Kids</label><br>
+    <input type="checkbox" class="channel" id="music" name="music">
+    <label for="music">Music</label><br>
+    <input type="checkbox" class="channel" id="news" name="news">
+    <label for="news"> News</label><br>
+    <input type="checkbox" class="channel" id="movies" name="movies">
+    <label for="movies"> Movies</label><br>
+</div>
+
+
+<br>
+<button id="getselect" onclick = "GetSelected()">Submit</button>
+<!-- <input id="getselect" type = "button" value = "Get" onclick = "GetSelected()"/> -->
+<br>
+<strong id="rewardstitle"></strong>
+<br>
+
+<ul id="rewards"></ul>
+
+<button id="resubmit" onclick="location.reload();">Reset</button>
+
+
+    <script src="Eligibility.js"></script>
+    <script src="Reward.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

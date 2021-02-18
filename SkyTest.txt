@@ -1,0 +1,254 @@
+class Reward {
+
+    constructor(selected) {
+        this.selected = selected;
+    }
+
+    getRewards(selected) {
+        document.getElementById('rewardstitle').appendChild(document.createTextNode('Your Rewards List'))
+        selected.forEach((select) => {    
+    
+        let rewardsList = document.getElementById('rewards')
+        switch(select) {
+            case 'sports':
+              let sportsItem = document.createElement('li');
+              sportsItem.appendChild(document.createTextNode('Champions League Final Ticket'));
+              rewardsList.appendChild(sportsItem);
+              break;
+            case 'kids':
+                let kidsItem = document.createElement('li');
+                kidsItem.appendChild(document.createTextNode('Sorry - No rewards available for Kids Channel Subscribers'));
+                rewardsList.appendChild(kidsItem);
+                console.log('N/A - No Rewards available for Kids Channel subscription')
+              break;
+            case 'music':
+                let musicItem = document.createElement('li');
+                musicItem.appendChild(document.createTextNode('Karaoke Pro Microphone'));
+                rewardsList.appendChild(musicItem);
+              break;
+            case 'news':
+                let newsItem = document.createElement('li');
+                newsItem.appendChild(document.createTextNode('Sorry - No rewards available for News Channel Subscribers'));
+                rewardsList.appendChild(newsItem);
+                console.log('N/A - No Rewards available for News Channel subscription')
+              break;
+            case 'movies':
+                let moviesItem = document.createElement('li');
+                moviesItem.appendChild(document.createTextNode('Pirates of the Carribean collection'));
+                rewardsList.appendChild(moviesItem);
+              break;
+          }
+        }
+    )}
+    
+
+}
+
+
+class Eligibility {
+
+    constructor(number) {
+        this.number = number;
+    }
+
+    checkEligibility(number) {
+        if (number.length !== 8) { 
+            document.getElementById('resubmit').style.display = 'block';
+            document.getElementById('getselect').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+        } else if (number.length === 8 && number % 2 === 0) {
+            number = accountNumber.value;
+            document.getElementById('resubmit').style.display = 'block';
+            document.getElementById('getselect').style.display = 'none';
+            return 'CUSTOMER_ELIGIBLE';
+        } else {
+            document.getElementById('resubmit').style.display = 'block';
+            document.getElementById('getselect').style.display = 'none';
+            return 'CUSTOMER_INELIGIBLE';
+        }
+    }
+
+}
+
+**App.js
+const accountNumber = document.getElementById('account')
+const listOfChannels = document.querySelectorAll('.channel')
+
+
+function GetSelected() {
+    //Create an Array.
+    let selected = new Array();
+    let selectedAccountNumber = accountNumber.value;
+
+    // Loop and push the checked CheckBox value in Array
+    for (var i = 0; i < listOfChannels.length; i++) {
+        if (listOfChannels[i].checked) {
+            selected.push(listOfChannels[i].id);
+        }
+    }
+
+    const newEligibility = new Eligibility;
+    const newReward = new Reward;
+    if (newEligibility.checkEligibility(selectedAccountNumber) === 'CUSTOMER_ELIGIBLE') {
+        console.log('CUSTOMER_ELIGIBLE')
+        newReward.getRewards(selected)
+    } else {
+        console.log('CUSTOMER_INELIGIBLE')
+        
+    }
+    
+ 
+};
+
+**CSS
+
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+    background-color: steelblue;
+    color: #ffffff;
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.channel {
+    background-color: rgba(161, 238, 18, 0.4);
+    padding: 20px 40px;
+    border-radius: 5px;
+}
+
+#getselect {
+    border-radius: 10px;
+    outline: none;
+    padding: 10px;
+}
+
+#resubmit {
+    border-radius: 10px;
+    outline: none;
+    padding: 10px;
+}
+
+#getselect #resubmit {
+    transition-duration: 0.4s;
+    
+  }
+  
+#getselect:hover,
+#resubmit:hover
+{
+    background-color: #4CAF50; 
+    color: white;
+    border-radius: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  width: 150px;
+  border-radius: 10px;
+}
+
+
+
+***HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sky Test</title>
+<style>
+    #error {
+        display:none;
+    }
+    #resubmit {
+        display: none;
+    }
+    #norewards {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<h1>Sky Reward Service</h1>
+
+
+<label for="account"><strong>Account Number</strong> </label><br>
+<input type="number" placeholder="" id="account" maxlength="6" min="6" max="6" required>
+<br>
+<br>
+<strong id ="error" style="color: red;" id="accounterror">Invalid Account Number</strong>
+<br>
+<br>
+<label for="vehicle1"><strong>Channel Subscriptions</strong></label><br>
+
+<div class="checkboxbuttons">
+    <input type="checkbox" class="channel" id="sports" name="sports">
+    <label for="sports"> Sports</label><br>
+    <input type="checkbox" class="channel" id="kids" name="kids">
+    <label for="kids"> Kids</label><br>
+    <input type="checkbox" class="channel" id="music" name="music">
+    <label for="music">Music</label><br>
+    <input type="checkbox" class="channel" id="news" name="news">
+    <label for="news"> News</label><br>
+    <input type="checkbox" class="channel" id="movies" name="movies">
+    <label for="movies"> Movies</label><br>
+</div>
+
+
+<br>
+<button id="getselect" onclick = "GetSelected()">Submit</button>
+<!-- <input id="getselect" type = "button" value = "Get" onclick = "GetSelected()"/> -->
+<br>
+<strong id="rewardstitle"></strong>
+<br>
+
+<ul id="rewards"></ul>
+
+<button id="resubmit" onclick="location.reload();">Reset</button>
+
+
+    <script src="Eligibility.js"></script>
+    <script src="Reward.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
